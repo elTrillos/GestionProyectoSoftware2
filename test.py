@@ -70,7 +70,7 @@ canvas = Canvas(root, width=800, height=1000, bg='white')
 canvas.pack()
 
 # Load and display the image
-image = Image.open("mel/assets/board.jpg")
+image = Image.open("assets/board.jpg")
 image = image.resize((800, 800))
 photo = ImageTk.PhotoImage(image)
 canvas.create_image(400, 400, image=photo)
