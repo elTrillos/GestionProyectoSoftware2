@@ -17,10 +17,10 @@ HOME_COLUMN_STARTS = {
 }
 
 WINNING_POSITIONS = {
-    "Green": 996,
-    "Yellow": 997,
-    "Blue": 998,
-    "Red": 999
+    "Green": 155,
+    "Yellow": 116,
+    "Blue": 129,
+    "Red": 138
 }
 
 
@@ -151,11 +151,11 @@ class Board:
                 return False
 
         # 2. Entering the home row
-        elif piece.position < player.home_column_start and rollover_new_position >= player.home_column_start:
-            new_position = rollover_new_position + 100
+        elif piece.position <= player.home_column_start and raw_new_position >= player.home_column_start:
+            new_position = raw_new_position + 100
             piece.home_row = True
         # 3. Entering the winning position
-        elif rollover_new_position > player.home_column_start and piece.home_row or rollover_new_position == player.home_column_start + 5:
+        elif raw_new_position > player.home_column_start and piece.home_row or raw_new_position == player.home_column_start + 5:
             new_position = player.winning_position
         else:
             new_position = rollover_new_position
