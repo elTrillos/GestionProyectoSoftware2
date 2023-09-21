@@ -1,12 +1,6 @@
 from Piece import Piece
+from utils import STARTING_POSITIONS
 import random
-
-STARTING_POSITIONS = {
-    "Green": [-41, -42, -43, -44],
-    "Red": [-31, -32, -33, -34],
-    "Blue": [-21, -22, -23, -24],
-    "Yellow": [-11, -12, -13, -14],
-}
 
 
 class Player:
