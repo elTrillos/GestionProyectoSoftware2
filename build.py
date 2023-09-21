@@ -1,11 +1,11 @@
 import PyInstaller.__main__
 import sys
-
+import os
 # Determine if running on Windows
 is_windows = sys.platform.startswith('win')
 
 # Define the data files to include
-data_files = [("assets/*", "assets")]
+data_files = [(os.path.join("assets", "*"), "assets")]
 
 # Convert the data files into the format for `--add-data`
 add_data = ["--add-data={};{}".format(src, dst) if is_windows else "--add-data={}:{}".format(src, dst) for src, dst in data_files]
