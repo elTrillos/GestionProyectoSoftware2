@@ -10,6 +10,7 @@ class Game:
     def __init__(self, num_players):
         self.board = Board(num_players)
         self.current_player_index = 0  # Start with the first player
+        self.last_dice_roll = 0
 
     def select_starting_player(self):
         highest_roll = 0
@@ -26,6 +27,8 @@ class Game:
                 highest_roll_player_index = player_index
         return highest_roll_player_index
 
+    def get_last_dice_roll(self):
+        return self.last_dice_roll
     def play_turn(self):
         # Select starting player
         self.current_player_index = self.select_starting_player()
@@ -35,6 +38,7 @@ class Game:
 
         # Roll the dice for the current player
         roll = current_player.roll_dice()
+        self.last_dice_roll = roll
         print(f"Player {current_player.color} rolled a {roll}")
 
         # Try to move each piece until successful (or could skip this player)
