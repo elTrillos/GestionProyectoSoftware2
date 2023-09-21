@@ -1,15 +1,11 @@
 from Board import Board
 import random
 
-from utils import CELL_MAPPINGS
-
-# from utils import wait
-
 
 class Game:
     def __init__(self, num_players):
         self.board = Board(num_players)
-        self.current_player_index = 0  # Start with the first player
+        self.current_player_index = self.select_starting_player()
         self.last_dice_roll = 0
 
     def select_starting_player(self):
@@ -29,10 +25,11 @@ class Game:
 
     def get_last_dice_roll(self):
         return self.last_dice_roll
-    def play_turn(self):
-        # Select starting player
-        self.current_player_index = self.select_starting_player()
 
+    def get_current_player(self):
+        return self.board.players[(self.current_player_index - 1) % self.board.num_players]
+
+    def play_turn(self):
         # Get the current player
         current_player = self.board.players[self.current_player_index]
 
