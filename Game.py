@@ -56,6 +56,7 @@ class Game:
             print(f"Player {current_player.color} wins!")
             return True
 
-        # Move to the next player
-        self.current_player_index = (self.current_player_index + 1) % self.board.num_players
+        # Move to the next player if dice roll is not 6 or 1
+        if roll != 6 and roll != 1:
+            self.current_player_index = (self.current_player_index + 1) % self.board.num_players
         return False
