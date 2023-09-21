@@ -52,7 +52,15 @@ def on_key_press(event):
 
     if game_over:
         # Display a message
-        canvas.create_text(400, 900, text="Game Over!", fill='black', font=('Arial', 40))
+        text_over = canvas.create_text(400, 700, text="Game Over!", fill='white', font=('Arial', 120))
+        bbox = canvas.bbox(text_over)
+        rect_item = canvas.create_rectangle(bbox, outline="magenta", fill="black", width=4)
+        canvas.tag_raise(text_over, rect_item)
+
+        text_over = canvas.create_text(400, 900, text=f"{game.get_current_player().color} wins!", fill='white', font=('Arial', 120))
+        bbox = canvas.bbox(text_over)
+        rect_item = canvas.create_rectangle(bbox, outline="magenta", fill="black", width=4)
+        canvas.tag_raise(text_over, rect_item)
         # Stop listening for keypresses
         root.unbind("<Key>")
 
