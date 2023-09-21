@@ -2,21 +2,6 @@ import os
 import platform
 
 
-def get_num_players():
-    """
-    Ask for the number of players.
-    """
-    while True:
-        try:
-            num_players = int(input("Enter the number of players (2-4): "))
-            if num_players < 2 or num_players > 4:
-                print("Please enter a number between 2 and 4.")
-                continue
-            return num_players
-        except ValueError:
-            print("Invalid input. Please enter a number between 2 and 4.")
-
-
 def wait(text):
     print(f"\n\n{text}", end="", flush=True)
     if platform.system() == "Windows":
@@ -26,6 +11,35 @@ def wait(text):
     print()
     print("\n")
 
+
+PLAYER_STARTS = {
+    "Green": 0,
+    "Yellow": 13,
+    "Blue": 26,
+    "Red": 39
+}
+
+
+HOME_COLUMN_STARTS = {
+    "Green": 51,
+    "Yellow": 12,
+    "Blue": 25,
+    "Red": 38
+}
+
+WINNING_POSITIONS = {
+    "Green": 156,
+    "Yellow": 117,
+    "Blue": 130,
+    "Red": 143
+}
+
+STARTING_POSITIONS = {
+    "Green": [-41, -42, -43, -44],
+    "Red": [-31, -32, -33, -34],
+    "Blue": [-21, -22, -23, -24],
+    "Yellow": [-11, -12, -13, -14],
+}
 
 CELL_MAPPINGS = {
     -41: (113, 115),
@@ -96,29 +110,41 @@ CELL_MAPPINGS = {
     49: (7, 433),
     50: (7, 380),
     51: (7, 327),
-    150: (60, 380),
-    151: (113, 380),
-    152: (166, 380),
-    153: (219, 380),
-    154: (272, 380),
-    155: (325, 380),
-    111: (378, 62),
-    112: (378, 115),
-    113: (378, 168),
-    114: (378, 221),
-    115: (378, 274),
-    116: (378, 327),
-    124: (696, 380),
-    125: (643, 380),
-    126: (590, 380),
-    127: (537, 380),
-    128: (484, 380),
-    129: (431, 380),
-    132: (378, 751),
-    133: (378, 698),
-    134: (378, 645),
-    135: (378, 592),
-    136: (378, 539),
-    137: (378, 486),
-    138: (378, 433),
+    151: (60, 380),
+    152: (113, 380),
+    153: (166, 380),
+    154: (219, 380),
+    155: (272, 380),
+    156: (325, 380),
+    112: (378, 62),
+    113: (378, 115),
+    114: (378, 168),
+    115: (378, 221),
+    116: (378, 274),
+    117: (378, 327),
+    125: (696, 380),
+    126: (643, 380),
+    127: (590, 380),
+    128: (537, 380),
+    129: (484, 380),
+    130: (431, 380),
+    138: (378, 698),
+    139: (378, 645),
+    140: (378, 592),
+    141: (378, 539),
+    142: (378, 486),
+    143: (378, 433),
 }
+
+# # Draw some example pieces in all cells
+# for cell in CELL_MAPPINGS:
+#     canvas.create_oval(CELL_MAPPINGS[cell][0], CELL_MAPPINGS[cell][1], CELL_MAPPINGS[cell][0] + 40, CELL_MAPPINGS[cell][1] + 40, fill='pink', outline='black', width=2)
+
+# for color in STARTING_POSITIONS:
+#     for i in range(4):
+#         x, y = CELL_MAPPINGS[STARTING_POSITIONS[color][i]]
+#         color_fill = color
+#         if color == "Yellow":
+#             color_fill = "Gold"
+#         canvas.create_oval(x, y, x + 40, y + 40, fill=color_fill.lower(), outline='black', width=2)
+#         canvas.create_text(x + 20, y + 20, text=str(1), fill='white', font=('Arial', 20))
