@@ -27,7 +27,7 @@ class Game:
         return self.last_dice_roll
 
     def get_current_player(self):
-        return self.board.players[(self.current_player_index - 1) % self.board.num_players]
+        return self.board.players[self.current_player_index]
 
     def play_turn(self):
         # Get the current player
