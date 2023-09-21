@@ -2,6 +2,16 @@ from tkinter import Tk, Canvas, Label, Button
 from PIL import Image, ImageTk
 from utils import CELL_MAPPINGS
 from Game import Game
+import sys
+import os
+
+# Determine if running as a packaged application
+if getattr(sys, 'frozen', False):
+    # If packaged
+    base_path = sys._MEIPASS
+else:
+    # If running as normal Python script
+    base_path = os.path.dirname(__file__)
 
 
 def update_board():
@@ -96,14 +106,14 @@ canvas = Canvas(root, width=800, height=1000, bg='white')
 canvas.pack()
 
 # Load and display the image
-image = Image.open("assets/board.jpg")
+image = Image.open(os.path.join(base_path, "assets", "board.jpg"))
 image = image.resize((800, 800))
 photo = ImageTk.PhotoImage(image)
 canvas.create_image(400, 400, image=photo)
 
 dice_images = []
 for n in range(6):
-    image = Image.open(f"assets/Alea_{n + 1}.png")
+    image = Image.open(os.path.join(base_path, "assets", f"Alea_{n + 1}.png"))
     image = image.resize((100, 100))
     dice_images.append(ImageTk.PhotoImage(image))
 
