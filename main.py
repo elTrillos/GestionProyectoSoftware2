@@ -14,7 +14,7 @@ else:
     base_path = os.path.dirname(__file__)
 
 
-def update_board():
+def update_board(color: str):
     # Clear the canvas
     canvas.delete("all")
 
@@ -35,7 +35,7 @@ def update_board():
             # Draw new piece and text
             canvas.create_oval(x, y, x + 40, y + 40, fill=color_fill, outline='black', width=2)
             canvas.create_text(x + 20, y + 20, text=text, fill=text_fill, font=('Arial', 20))
-    canvas.create_text(250, 900, text=f"{game.get_current_player().color} dice roll", fill='black', font=('Arial', 30))
+    canvas.create_text(250, 900, text=f"{color} dice roll", fill='black', font=('Arial', 30))
     canvas.create_image(450, 900, image=dice_images[game.get_last_dice_roll() - 1])
 
 
@@ -44,11 +44,13 @@ def on_key_press(event):
         root.quit()
         return
 
+    color = game.get_current_player().color
+
     # Play one turn of the game
     game_over = game.play_turn()
 
     # Update the board
-    update_board()
+    update_board(color)
 
     if game_over:
         # Display a message
